@@ -165,8 +165,6 @@ _Note: Currently, when enabling support for buildpack-based applications, CF for
    Failed to retrieve logs from Log Cache: Get /api/v1/info: unsupported protocol scheme ""
 
    Failed to retrieve logs from Log Cache: Get /api/v1/info: unsupported protocol scheme ""
-   ```
-
 
    Waiting for app to start...
 
