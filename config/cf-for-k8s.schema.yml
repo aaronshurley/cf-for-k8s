@@ -1,17 +1,13 @@
 #@schema attach="data/values"
 ---
-#@schema/title "System Namespace"
 #@schema/doc "The kubernetes namespace where the system components will be deployed."
 system_namespace: ""
-#@schema/title "Workloads Namespace"
 #@schema/doc "The kubernetes namespace where the end-user workloads will be deployed."
 workloads_namespace: ""
 
-#@schema/title "System Domain"
 #@schema/doc "The base DNS domain for this instance of CF."
 #@schema/example "system.cf.example.com"
 system_domain: ""
-#@schema/title "App Domains"
 #@schema/doc "One or more DNS domain names that this instance of CF will host end-user workloads upon."
 #@schema/example ["apps.cf.example.com"]
 app_domains: []
@@ -23,10 +19,8 @@ cf_admin_password: ""
 #@schema/title "CF Blobstore"
 #@schema/doc "The control deployment of a blobstore for CF."
 cf_blobstore:
-  #@schema/title "Access Key"
   #@schema/doc "The minio access key ID."
   access_key: ""
-  #@schema/title "Secret Key"
   #@schema/doc "The minio secret access key."
   secret_key: ""
 
@@ -34,10 +28,8 @@ cf_blobstore:
 #@schema/doc "(Optional) The control deployment of a database for CF."
 #@schema/allow-empty
 cf_db:
-  #@schema/title "Admin Password"
   #@schema/doc "The admin password for operators to access the CF database."
   admin_password: ""
-  #@schema/title "Enabled"
   #@schema/doc "The boolean to enable the CF database."
   enabled: true
 
@@ -46,30 +38,24 @@ cf_db:
 #@schema/doc "The reserved static IP for the istio ingress LoadBalancer."
 istio_static_ip: ""
 
-#@schema/title "Images"
 #@schema/doc "The image locations of various components."
 images:
   #@schema/title "CAPI"
   #@schema/doc "The image location of CAPI."
   capi: ""
-  #@schema/title "Nginx"
   #@schema/doc "The image location of Nginx."
   nginx: ""
   #@schema/title "cfroutesync"
   #@schema/doc "The image location of cfroutesync."
   cfroutesync: "gcr.io/cf-networking-images/cf-k8s-networking/cfroutesync@sha256:3b2b25614d6da572175a848003e379894b154dd719f2e77a2325b98ad857d416"
 
-#@schema/title "System Certificate"
 #@schema/doc "The reserved static IP for the istio ingress LoadBalancer."
 system_certificate:
-  #@schema/title "Crt"
   #@schema/doc "The base64-encoded certificate for the wildcard subdomain of the system domain (e.g., CN=*.system.cf.example.com)."
   crt: ""
-  #@schema/title "Key"
   #@schema/doc "The base64-encoded private key for the certificate above."
   key: ""
-  #@schema/title "CA"
-  #@schema/doc "The base64-encoded CA certificate used to sign the system certifcate.""
+  #@schema/doc "The base64-encoded CA certificate used to sign the system certifcate."
   ca: ""
 
 #! TODO: stopped adding "excessive" titles and docs here
@@ -116,7 +102,7 @@ uaa:
     name: uaa
 
   certificate:
-    #@schema/doc "The base64-encoded certificate for the uaa service inside the kubernetes cluster (i.e., CN=uaa.cf-system.svc.cluster.local).""
+    #@schema/doc "The base64-encoded certificate for the uaa service inside the kubernetes cluster (i.e., CN=uaa.cf-system.svc.cluster.local)."
     crt: ""
     #@schema/doc "The base64-encoded private key for the cert above."
     key: ""
@@ -156,37 +142,37 @@ eirini:
   tls:
     #@schema/doc "Base64-encoded certificate for the eirini service inside the kubernetes cluster (i.e., CN=eirini.cf-system.svc.cluster.local)."
     crt: ""
-    #@schema/doc "Base64-encoded private key for the cert above.""
+    #@schema/doc "Base64-encoded private key for the cert above."
     key: ""
 
 log_cache_ca:
   #@schema/doc "Base64-encoded ca for the log cache."
   crt: ""
-  #@schema/doc "Base64-encoded private key for the cert above.""
+  #@schema/doc "Base64-encoded private key for the cert above."
   key: ""
 
 log_cache:
   #@schema/doc "Base64-encoded cert for the log cache requires CN of log-cache."
   crt: ""
-  #@schema/doc "Base64-encoded private key for the cert above.""
+  #@schema/doc "Base64-encoded private key for the cert above."
   key: ""
 
 log_cache_metrics:
   #@schema/doc "Base64-encoded cert for the log cache metrics requires CN of log-cache-metrics."
   crt: ""
-  #@schema/doc "Base64-encoded private key for the cert above.""
+  #@schema/doc "Base64-encoded private key for the cert above."
   key: ""
 
 log_cache_gateway:
   #@schema/doc "Base64-encoded cert for the log cache gateway requires CN of log-cache-gateway."
   crt: ""
-  #@schema/doc "Base64-encoded private key for the cert above.""
+  #@schema/doc "Base64-encoded private key for the cert above."
   key: ""
 
 log_cache_syslog:
   #@schema/doc "Base64-encoded cert for the log cache syslog server requires CN of log-cache-syslog."
   crt: ""
-  #@schema/doc "Base64-encoded private key for the cert above.""
+  #@schema/doc "Base64-encoded private key for the cert above."
   key: ""
 
 log_cache_client:
@@ -201,10 +187,14 @@ app_registry:
 
 metric_proxy:
   ca:
-    secret_name: "metric-proxy-ca"
+    #@schema/doc "The secret containing information of the metric proxy CA."
+    #@schema/example "metric-proxy-ca"
+    secret_name: ""
     crt: ""
     key: ""
   cert:
-    secret_name: "metric-proxy-cert"
+    #@schema/doc "The secret containing information of the metric proxy certificate."
+    #@schema/example "metric-proxy-cert"
+    secret_name: ""
     crt: ""
     key: ""
