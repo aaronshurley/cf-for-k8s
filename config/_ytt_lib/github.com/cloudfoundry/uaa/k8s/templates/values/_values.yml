@@ -1,32 +1,48 @@
 #@data/values
 ---
-#! UAA Deployment Values
+#@schema/doc "The version of UAA."
 version: ""
+#@schema/doc "The path to the UAA image."
 image: ""
+#@schema/doc "The kubernetes namespace where UAA is deployed."
 namespace: default
+#@schema/doc "The kubernetes labels to be applied to the UAA deployment."
 labels:
+  #@schema/key-may-be-present
   instance: standalone
+  #@schema/key-may-be-present
   partOf: uaa
+  #@schema/key-may-be-present
   managedBy: kubectl
 
+#@schema/doc "The resource requests for the UAA deployment."
 resources:
   requests:
+    #@schema/type "string"
     memory: 512Mi
+    #@schema/type "string"
     cpu: 500m
 
+#@schema/doc "The tomcat configuration of the UAA deployment."
 tomcat:
   accessLoggingEnabled: "y"
 
-#! UAA Application Values
+#@schema/doc "The database connection configuration for the UAA database."
 database:
   scheme: hsqldb
+  #@schema/type "string"
   address: ~
+  #@schema/type "int"
   port: ~
+  #@schema/type "string"
   name: ~
   username: sa
   password: password
 
+#@schema/doc "The Java Web Token (JWT) configuration for the UAA deployment."
 jwt:
   policy:
+    #@schema/type "string"
     activeKeyId: ~
+    #@schema/type "array"
     keys: []

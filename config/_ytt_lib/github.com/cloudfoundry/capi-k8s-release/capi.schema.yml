@@ -30,16 +30,22 @@ app_domains: ~
 #@schema/type "string"
 system_domain: ~
 
+#@schema/doc "The configuration for the Cloud Controller database"
 ccdb:
+#@schema/examples ("Postgres", "postgres"), ("MySQL", "mysql")
   adapter: postgres
+  #@schema/doc "The location of the database."
   host: capi-database-postgresql
+  #@schema/examples ("Postgres", 5432), ("MySQL", 3306)
   port: 5432
   user: cloud_controller
+  #@schema/doc "The DB user password in plain text."
   password: cloud_controller
   database: cloud_controller
 
+#@schema/doc "The configuration for the Cloud Controller blobstore"
 blobstore:
-  region: "''"
+  region: ""
   package_directory_key: cc-packages
   droplet_directory_key: cc-droplets
   resource_directory_key: cc-resources
@@ -50,25 +56,32 @@ blobstore:
 
 uaa:
   serverCerts:
-    secretName:
+    #@schema/type "string"
+    secretName: ~
   clients:
     cloud_controller_username_lookup:
-      secret: supers3cret
+      #@schema/type "string"
+      secret: ~
     capi_kpack_watcher:
-      secret: supers3cret
+      #@schema/type "string"
+      secret: ~
 
 eirini:
   serverCerts:
-    secretName:
+    #@schema/type "string"
+    secretName: ~
 
 metric_proxy:
   ca:
-    secret_name:
+    #@schema/type "string"
+    secret_name: ~
   cert:
-    secret_name:
+    #@schema/type "string"
+    secret_name: ~
 
 apiServer:
-  opi:  #! these certs were manually generated for dev purposes, they are not real eirini certs and don't have SANs.
+  #@schema/doc "These certs were manually generated for dev purposes, they are not real eirini certs and don't have SANs."
+  opi:
     client_key: |
       -----BEGIN RSA PRIVATE KEY-----
       MIIEpQIBAAKCAQEA0a/I76aefa2mcgvG7YM2WDAopD7yLCoLTuAC/BsaaQQaOJ/G
@@ -133,12 +146,15 @@ apiServer:
       -----END CERTIFICATE-----
 
 kbld:
-  destination:
+  #@schema/type "string"
+  destination: ~
 
 kpack:
   registry:
-    hostname: "" #! Used to fill in the hostname of the kpack registry auth secret
-    repository: "" #! Passed as spec.tag to the kpack Image resource
+    #@schema/doc "Used to fill in the hostname of the kpack registry auth secret"
+    hostname: ""
+    #@schema/doc "Passed as spec.tag to the kpack Image resource"
+    repository: ""
     username: ""
     password: ""
 
