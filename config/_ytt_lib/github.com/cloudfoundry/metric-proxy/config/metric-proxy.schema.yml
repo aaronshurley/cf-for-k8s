@@ -1,0 +1,34 @@
+#@schema attach="data/values"
+---
+#@schema/doc "Domain of the system."
+#@schema/type "string"
+system_domain: ~
+#@schema/doc "The namespace where cf components are installed."
+#@schema/type "string"
+system_namespace: ~
+
+images:
+  #@schema/doc "metric-proxy image."
+  metric_proxy: "oratos/metric-proxy@sha256:a2a0d2201d1a57602a3db337bfa256d6e042dfc09a63ba1b6f39c952847e00dc"
+
+metric_proxy:
+  #@schema/doc "metric-proxy ca configuration."
+  ca:
+    #@schema/type "string"
+    secret_name: ~
+    #@schema/doc "Base64-encoded metric-proxy ca cert."
+    #@schema/type "string"
+    crt: ~
+    #@schema/doc "Base64-encoded private key for the ca cert."
+    #@schema/type "string"
+    key: ~
+  #@schema/doc "metric-proxy cert configuration."
+  cert:
+    #@schema/type "string"
+    secret_name: ~
+    #@schema/doc "Base64-encoded cert for the metric-proxy server requires CN of metric-proxy."
+    #@schema/type "string"
+    crt: ~
+    #@schema/doc "Base64-encoded private key for the metric-proxy cert."
+    #@schema/type "string"
+    key: ~
