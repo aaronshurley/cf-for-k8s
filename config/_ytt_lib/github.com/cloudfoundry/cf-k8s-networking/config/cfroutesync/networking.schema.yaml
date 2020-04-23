@@ -1,0 +1,37 @@
+#@schema attach="data/values"
+---
+#@schema/doc "The namespace where cf components are installed."
+systemNamespace: cf-system
+#@schema/doc "The namespace where cf workloads are running."
+workloadsNamespace: cf-workloads
+
+#@schema/doc "The datavalues for the routesync component."
+cfroutesync:
+  image: gcr.io/cf-networking-images/cf-k8s-networking/cfroutesync:latest
+
+  #@schema/doc "Base64 encoded Cloud Controller CA."
+  #@schema/type "string"
+  ccCA: ~
+  #@schema/doc "Cloud Controller base URL."
+  #@schema/example "https://api.example.com"
+  #@schema/type "string"
+  ccBaseURL: ~
+  #@schema/doc "Base64 encoded UAA CA."
+  #@schema/type "string"
+  uaaCA: ~
+  #@schema/doc "UUA base URL."
+  #@schema/example "https://uaa.example.com"
+  #@schema/type "string"
+  uaaBaseURL: ~
+  #@schema/doc "UAA client name."
+  #@schema/type "string"
+  clientName: ~
+  #@schema/doc "Base64 encoded UAA client secret"
+  #@schema/type "string"
+  clientSecret: ~
+
+#@schema/doc "cfroutesync service configuration."
+service:
+  #@schema/doc "External port the route is exposed on."
+  #@schema/type "int"
+  externalPort: 80
